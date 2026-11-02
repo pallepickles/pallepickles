@@ -23,10 +23,10 @@ export function ProductCard({ product, onAdded, attentionIndex }: { product: Pro
     accent: item.accent,
     softAccent: item.softAccent,
   }));
-  const attentionDelay = attentionIndex * 0.8;
+  const attentionDelay = attentionIndex * 8;
   const attentionStyle = {
     "--attention-add-delay": `${attentionDelay}s`,
-    "--attention-kg-delay": `${attentionDelay + 0.4}s`,
+    "--attention-kg-delay": `${attentionDelay + 4}s`,
   } as CSSProperties;
 
   const handleAdd = () => {
