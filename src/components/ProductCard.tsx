@@ -31,7 +31,7 @@ export function ProductCard({ product, onAdded }: { product: Product; onAdded: (
   };
 
   return (
-    <article className={`product-card${product.category === "Combo" ? " product-card--combo" : ""}`}>
+    <article className={`product-card${product.category === "Combo" ? " product-card--combo" : ""}${product.id === "chicken" ? " product-card--chicken" : ""}`}>
       <div className="product-visual">
         {product.badge && <span className="product-badge">{product.badge}</span>}
         <PickleArt label={product.imageLabel.toUpperCase()} accent={product.accent} softAccent={product.softAccent} variant={product.id} comboItems={comboItems} />

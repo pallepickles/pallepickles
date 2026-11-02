@@ -239,6 +239,89 @@ a { color: inherit; text-decoration: none; }
   .closing-stat dt { font-size: 7px; }
 }
 
+/* Soft glass glints and small twinkles keep the jar art lively without obscuring labels. */
+.product-visual { --jar-sparkle-size: 8px; }
+.hero-art-wrap { --jar-sparkle-size: 13px; }
+.product-visual .pickle-jar-motion::before,
+.product-visual .pickle-jar-motion::after,
+.hero-art-wrap .pickle-jar-motion::before,
+.hero-art-wrap .pickle-jar-motion::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  width: var(--jar-sparkle-size);
+  height: var(--jar-sparkle-size);
+  clip-path: polygon(50% 0, 59% 40%, 100% 50%, 59% 60%, 50% 100%, 41% 60%, 0 50%, 41% 40%);
+  background: #fff8d9;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 3px rgba(255, 244, 194, .9));
+  animation: jar-twinkle 4.2s ease-in-out infinite;
+  animation-delay: calc(var(--jar-delay, 0s) + .4s);
+}
+.product-visual .pickle-jar-motion::before,
+.hero-art-wrap .pickle-jar-motion::before { top: 6%; right: -5%; }
+.product-visual .pickle-jar-motion::after,
+.hero-art-wrap .pickle-jar-motion::after {
+  bottom: 28%;
+  left: -7%;
+  width: calc(var(--jar-sparkle-size) * .68);
+  height: calc(var(--jar-sparkle-size) * .68);
+  animation-delay: calc(var(--jar-delay, 0s) + 1.9s);
+}
+.product-visual .pickle-jar__glass::after,
+.hero-art-wrap .pickle-jar__glass::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -10%;
+  bottom: -10%;
+  left: -35%;
+  width: 30%;
+  border-radius: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.58), transparent);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transform: skewX(-20deg);
+  animation: jar-glass-shimmer 4.8s ease-in-out infinite;
+  animation-delay: calc(var(--jar-delay, 0s) + .3s);
+}
+.product-visual .pickle-combo-jars--3 .pickle-jar-motion:nth-child(2) .pickle-jar::after,
+.product-visual .pickle-combo-jars--5 .pickle-jar-motion:nth-child(3) .pickle-jar::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(108deg, transparent 36%, rgba(255,255,255,.08) 42%, rgba(255,255,255,.72) 49%, rgba(255,255,255,.2) 53%, transparent 61%);
+  background-size: 240% 100%;
+  background-position: 145% 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: combo-center-beam 5.2s ease-in-out infinite;
+  animation-delay: 1.1s;
+}
+.product-card--chicken .add-button:not(.add-button--added) { animation: chicken-add-glow 2.4s ease-in-out infinite; }
+@keyframes jar-twinkle {
+  0%, 57%, 100% { opacity: 0; transform: scale(.22) rotate(0); }
+  64% { opacity: .95; transform: scale(1) rotate(35deg); }
+  71% { opacity: .3; transform: scale(.55) rotate(70deg); }
+}
+@keyframes jar-glass-shimmer {
+  0%, 22%, 100% { opacity: 0; transform: translateX(0) skewX(-20deg); }
+  30% { opacity: .9; }
+  54% { opacity: 0; transform: translateX(470%) skewX(-20deg); }
+}
+@keyframes combo-center-beam {
+  0%, 14%, 100% { opacity: 0; background-position: 145% 0; }
+  26% { opacity: .72; }
+  54% { opacity: 0; background-position: -65% 0; }
+}
+@keyframes chicken-add-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(229,173,61,0); }
+  52% { box-shadow: 0 0 0 3px rgba(229,173,61,.27), 0 0 13px 3px rgba(229,173,61,.42); }
+}
+
 /* Revised typography: a crisp, sturdy sans for the shop and an editorial serif for stories. */
 body { --font-product: var(--font-body); font-family: var(--font-body); font-optical-sizing: auto; letter-spacing: -.008em; }
 button, input, textarea, select { font-family: var(--font-body); }
