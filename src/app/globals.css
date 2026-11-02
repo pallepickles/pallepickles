@@ -220,6 +220,25 @@ a { color: inherit; text-decoration: none; }
   .courier-disclaimer { font-size: 6px; }
 }
 
+.closing-copy { width: min(100%, 600px); }
+.closing-copy p { max-width: 360px; margin-bottom: 0; line-height: 1.6; }
+.closing-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 540px); margin: 18px 0 22px; border-top: 1px solid rgba(255,249,235,.3); border-bottom: 1px solid rgba(255,249,235,.3); }
+.closing-stat { display: flex; min-width: 0; flex-direction: column; gap: 5px; padding: 13px 10px 13px 0; }
+.closing-stat + .closing-stat { padding-left: 13px; border-left: 1px solid rgba(255,249,235,.25); }
+.closing-stat dt { color: #f3ded1; font-size: 9px; line-height: 1.4; }
+.closing-stat dd { order: -1; margin: 0; color: #f1d397; font-family: var(--font-display); font-size: clamp(22px, 2.6vw, 30px); font-weight: 600; line-height: 1; letter-spacing: -.035em; }
+@media (max-width: 700px) {
+  .closing-stats { width: min(100%, 410px); margin: 15px 0 19px; }
+  .closing-stat { padding-top: 11px; padding-bottom: 11px; }
+  .closing-stat dd { font-size: clamp(21px, 6vw, 25px); }
+  .closing-stat dt { font-size: 8px; }
+}
+@media (max-width: 360px) {
+  .closing-stat { padding-right: 5px; }
+  .closing-stat + .closing-stat { padding-left: 7px; }
+  .closing-stat dt { font-size: 7px; }
+}
+
 /* Revised typography: a crisp, sturdy sans for the shop and an editorial serif for stories. */
 body { --font-product: var(--font-body); font-family: var(--font-body); font-optical-sizing: auto; letter-spacing: -.008em; }
 button, input, textarea, select { font-family: var(--font-body); }
