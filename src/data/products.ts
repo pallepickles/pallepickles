@@ -101,8 +101,8 @@ export const products: Product[] = [
     variantLabels: { 500: "1/2 kg", 1000: "1 kg" },
   },
   {
-    id: "avakaya",
-    name: "Mango Avakaya",
+    id: "mango-pacchadi",
+    name: "Mango Pacchadi",
     localName: "మామిడికాయ",
     category: "Veg",
     description: "Raw mango, bold chilli and a generous pour of gingelly oil.",

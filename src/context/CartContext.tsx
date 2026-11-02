@@ -62,7 +62,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
         if (saved) {
           const parsed = JSON.parse(saved) as Partial<PersistedState>;
           if (Array.isArray(parsed.items)) {
-            const validItems = parsed.items.filter((item) => {
+            const migratedItems = parsed.items.map((item) => item.productId === "avakaya"
+              ? { ...item, productId: "mango-pacchadi" }
+              : item);
+            const validItems = migratedItems.filter((item) => {
               const product = getProduct(item.productId);
               return Boolean(
                 product
