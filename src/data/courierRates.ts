@@ -15,7 +15,7 @@ const ratesPerKg: Record<CourierTerritory, number> = {
 
 const territoryNames: Record<CourierTerritory, string> = {
   ts: "Telangana (TS)",
-  ap: "Andhra Pradesh (AP)",
+  ap: "AP",
   "other-states": "Other states in India",
 };
 

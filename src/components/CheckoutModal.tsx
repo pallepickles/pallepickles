@@ -135,7 +135,7 @@ export function CheckoutModal({ open, onClose, onBack }: { open: boolean; onClos
                 <label className="form-field"><span>Delivery area <i>*</i></span><select required value={customer.courierTerritory} onChange={(e) => updateCustomer("courierTerritory", e.target.value)}>
                   <option value="">Choose delivery area</option>
                   <option value="ts">Telangana (TS) · ₹50/kg</option>
-                  <option value="ap">Andhra Pradesh (AP) · ₹80/kg</option>
+                  <option value="ap">AP · ₹80/kg</option>
                   <option value="other-states">Other states · ₹120/kg</option>
                 </select></label>
                 <div className="courier-estimate" aria-live="polite">

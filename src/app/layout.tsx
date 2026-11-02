@@ -9,10 +9,10 @@ const displayFont = Playfair_Display({ subsets: ["latin"], variable: "--font-dis
 
 export const metadata: Metadata = {
   title: "Palle Pickles | Prathi muddhalo palle flavour",
-  description: "Hand-made Andhra pickles from the Palle Pickles village kitchen. Find your favourite and order worldwide.",
+  description: "Hand-made Telugu pickles from the Palle Pickles village kitchen. Find your favourite and order worldwide.",
   openGraph: {
     title: "Palle Pickles — a little taste of home",
-    description: "Traditional Andhra pickles, made in small batches and shipped worldwide.",
+    description: "Traditional Telugu pickles, made in small batches and shipped worldwide.",
     type: "website",
   },
 };

@@ -51,7 +51,7 @@ export default function HomePage() {
           <p className="catalog-footnote"><BadgeCheck size={15} /> All prices in INR · Freshly made in small batches</p>
         </section>
 
-        <section className="story-section" id="about"><div className="story-art"><div className="story-art__sun" /><div className="story-seal"><span>పల్లె<br />రుచి</span><i>VILLAGE TASTE</i></div><div className="story-art__copy"><span>FROM THE HEART OF ANDHRA</span><strong>Recipes with<br />a little history.</strong></div><div className="story-leaf story-leaf--one" /><div className="story-leaf story-leaf--two" /></div>
+        <section className="story-section" id="about"><div className="story-art"><div className="story-art__sun" /><div className="story-seal"><span>పల్లె<br />రుచి</span><i>VILLAGE TASTE</i></div><div className="story-art__copy"><span>FROM THE TELUGU HEARTLAND</span><strong>Recipes with<br />a little history.</strong></div><div className="story-leaf story-leaf--one" /><div className="story-leaf story-leaf--two" /></div>
           <div className="story-copy"><span className="eyebrow"><span className="eyebrow-line" /> A STORY IN EVERY JAR</span><h2>Some flavours<br />feel like <em>coming home.</em></h2><p>Our pickles begin in the heart of a village kitchen, where good food takes its time and every recipe has a story. We keep those traditions alive with carefully chosen ingredients and the same care we&rsquo;d give our own family.</p><p>From the first crackle of mustard seeds to the last spoonful of spice, every batch is made to bring people closer around the table.</p><a className="story-link" href="#pickles">Find your flavour <ArrowRight size={16} /></a></div>
         </section>
 

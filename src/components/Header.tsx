@@ -16,7 +16,7 @@ export function Header({ onCartClick }: { onCartClick: () => void }) {
 
   return (
     <header className="site-header">
-      <div className="top-ribbon">Small-batch Andhra pickles · Made with love in India · Shipping worldwide</div>
+      <div className="top-ribbon">Small-batch Telugu pickles · Made with love in India · Shipping worldwide</div>
       <div className="nav-shell">
         <a className="brand-lockup" href="#home" aria-label="Palle Pickles home">
           <span className="brand-mark"><Leaf size={21} strokeWidth={1.8} /></span>

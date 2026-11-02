@@ -7,7 +7,7 @@ export function Hero() {
       <div className="hero-copy">
         <div className="eyebrow"><span className="eyebrow-line" /> A little taste of home <Sparkles size={13} /></div>
         <h1>Prathi muddhalo<br /><em>&lsquo;palle flavour&rsquo;.</em></h1>
-        <p className="hero-description">The bold, beautiful taste of a village kitchen. Hand-made Andhra pickles, prepared with pure ingredients and recipes passed down with love.</p>
+        <p className="hero-description">The bold, beautiful taste of a village kitchen. Hand-made Telugu pickles, prepared with pure ingredients and recipes passed down with love.</p>
         <div className="hero-actions">
           <a className="button button--primary" href="#pickles">Find your favourite <ArrowUpRight size={17} /></a>
           <a className="text-link" href="#about"><span className="play-icon"><ArrowDown size={14} /></span> Our story</a>
