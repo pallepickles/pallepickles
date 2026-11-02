@@ -1,9 +1,52 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
 import { PickleArt } from "@/components/PickleArt";
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePlayback = () => {
+      if (reducedMotion.matches || document.visibilityState !== "visible") {
+        video.pause();
+        return;
+      }
+
+      void video.play().catch(() => {});
+    };
+
+    updatePlayback();
+    reducedMotion.addEventListener("change", updatePlayback);
+    document.addEventListener("visibilitychange", updatePlayback);
+
+    return () => {
+      reducedMotion.removeEventListener("change", updatePlayback);
+      document.removeEventListener("visibilitychange", updatePlayback);
+      video.pause();
+    };
+  }, []);
+
   return (
     <section className="hero-section" id="home">
+      <video
+        ref={videoRef}
+        className="hero-background-video"
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/palle-pickles-hero-poster.jpg"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        <source src="/palle-pickles-hero.mp4" type="video/mp4" />
+      </video>
       <div className="hero-copy">
         <div className="eyebrow"><span className="eyebrow-line" /> A little taste of home <Sparkles size={13} /></div>
         <h1>Prathi muddhalo<br /><em>&lsquo;palle flavour&rsquo;.</em></h1>
