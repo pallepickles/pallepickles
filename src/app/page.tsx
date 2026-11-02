@@ -10,14 +10,18 @@ import { Hero } from "@/components/Hero";
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/data/products";
 
-type Filter = "All pickles" | "Veg" | "Non-Veg";
+type Filter = "All pickles" | "Veg" | "Non-Veg" | "Combo offers";
 
 export default function HomePage() {
   const [filter, setFilter] = useState<Filter>("All pickles");
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [toast, setToast] = useState("");
-  const filteredProducts = useMemo(() => filter === "All pickles" ? products : products.filter((product) => product.category === filter), [filter]);
+  const filteredProducts = useMemo(() => {
+    if (filter === "All pickles") return products;
+    const category = filter === "Combo offers" ? "Combo" : filter;
+    return products.filter((product) => product.category === category);
+  }, [filter]);
 
   const notifyAdded = (message: string) => {
     setToast(message);
@@ -40,8 +44,8 @@ export default function HomePage() {
 
         <section className="catalog-section section-shell" id="pickles">
           <div className="section-intro"><div><span className="eyebrow"><span className="eyebrow-line" /> FROM OUR KITCHEN</span><h2>Meet your new<br /><em>favourite pickle.</em></h2></div><p>Each jar brings a little warmth, a little spice, and a whole lot of home to your table.</p></div>
-          <div className="catalog-toolbar"><div className="catalog-count"><span>{String(filteredProducts.length).padStart(2, "0")}</span> jars made with love</div><div className="filter-tabs" role="group" aria-label="Filter by pickle type">
-            {(["All pickles", "Veg", "Non-Veg"] as const).map((option) => <button key={option} className={filter === option ? "filter-tab is-active" : "filter-tab"} onClick={() => setFilter(option)} aria-pressed={filter === option}>{option}{option === "Non-Veg" && <span className="nonveg-dot" />}</button>)}
+          <div className="catalog-toolbar"><div className="catalog-count"><span>{String(filteredProducts.length).padStart(2, "0")}</span> pickles &amp; combos</div><div className="filter-tabs" role="group" aria-label="Filter by pickle type">
+            {(["All pickles", "Veg", "Non-Veg", "Combo offers"] as const).map((option) => <button key={option} className={filter === option ? "filter-tab is-active" : "filter-tab"} onClick={() => setFilter(option)} aria-pressed={filter === option}>{option}{option === "Non-Veg" && <span className="nonveg-dot" />}</button>)}
           </div></div>
           <div className="product-grid">{filteredProducts.map((product) => <ProductCard key={product.id} product={product} onAdded={notifyAdded} />)}</div>
           <p className="catalog-footnote"><BadgeCheck size={15} /> All prices in INR · Freshly made in small batches</p>

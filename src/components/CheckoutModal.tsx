@@ -10,7 +10,7 @@ import type { WeightGrams } from "@/types/pickle";
 const PALLE_PICKLES_WHATSAPP = "919642875111";
 const DTDC_WHATSAPP = "919949525111";
 const formatPrice = (value: number) => new Intl.NumberFormat("en-IN", { maximumFractionDigits: 2 }).format(value);
-const formatWeight = (weight: WeightGrams) => weight === 1000 ? "1 kg" : `${weight} g`;
+const formatWeight = (weight: WeightGrams) => weight >= 1000 ? `${weight / 1000} kg` : `${weight} g`;
 const formatRequestedDate = (value: string) => {
   if (!value) return "Not selected";
   const [year, month, day] = value.split("-");
@@ -51,9 +51,11 @@ export function CheckoutModal({ open, onClose, onBack }: { open: boolean; onClos
     const orderLines = items.map((item, index) => {
       const product = getProduct(item.productId);
       if (!product) return "";
-      const unitPrice = product.prices[item.weight];
+      const unitPrice = product.prices[item.weight] ?? 0;
       const lineTotal = unitPrice * item.quantity;
-      return `${index + 1}. ${product.name} (${formatWeight(item.weight)}) × ${item.quantity} @ ₹${formatPrice(unitPrice)} each = ₹${formatPrice(lineTotal)}`;
+      const variantLabel = product.variantLabels?.[item.weight] ?? formatWeight(item.weight);
+      const productName = product.localName ? `${product.name} (${product.localName})` : product.name;
+      return `${index + 1}. ${productName} (${variantLabel}) × ${item.quantity} @ ₹${formatPrice(unitPrice)} each = ₹${formatPrice(lineTotal)}`;
     }).filter(Boolean).join("\n");
 
     const address = `${customer.street}, ${customer.city}, ${customer.state}, ${customer.country} - ${customer.postalCode}`;

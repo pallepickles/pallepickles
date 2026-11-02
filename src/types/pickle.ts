@@ -1,17 +1,20 @@
-export type ProductCategory = "Veg" | "Non-Veg";
-export type WeightGrams = 250 | 500 | 1000;
+export type ProductCategory = "Veg" | "Non-Veg" | "Combo";
+export type WeightGrams = 250 | 500 | 750 | 1000 | 1250;
 export type CourierTerritory = "ts" | "ap" | "other-states";
 
 export interface Product {
   id: string;
   name: string;
+  localName?: string;
   category: ProductCategory;
   description: string;
   ingredients: string;
   imageLabel: string;
   accent: string;
   softAccent: string;
-  prices: Record<WeightGrams, number>;
+  weights: WeightGrams[];
+  prices: Partial<Record<WeightGrams, number>>;
+  variantLabels?: Partial<Record<WeightGrams, string>>;
   badge?: string;
 }
 

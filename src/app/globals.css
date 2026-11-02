@@ -146,6 +146,12 @@ a { color: inherit; text-decoration: none; }
 .courier-contact { align-self: flex-start; min-height: 38px; margin-top: 7px; gap: 8px; font-size: 9px; text-decoration: none; }
 .courier-contact[aria-disabled="true"] { cursor: not-allowed; opacity: .55; pointer-events: none; }
 .courier-contact-hint { color: #898173; font-size: 7px; }
+.product-heading h3 { display: flex; flex-direction: column; gap: 3px; }
+.product-heading h3 small { color: #867e70; font-family: var(--font-body); font-size: 9px; font-weight: 400; }
+.category-tag--combo { color: #89632c; }
+.category-tag--combo i { border-color: #b88d45; }
+.variant-fixed { color: #716b61; font-size: 8px; }
+.product-card__bottom .weight-options { flex-wrap: wrap; }
 .checkout-summary { margin: 14px 0 7px; padding-top: 12px; }
 .checkout-cost-lines { display: grid; gap: 5px; margin-bottom: 13px; }
 .checkout-cost-lines > div { display: flex; justify-content: space-between; gap: 10px; color: #7c7569; font-size: 8px; }

@@ -61,7 +61,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
         const saved = window.localStorage.getItem(STORAGE_KEY);
         if (saved) {
           const parsed = JSON.parse(saved) as Partial<PersistedState>;
-          if (Array.isArray(parsed.items)) setItems(parsed.items);
+          if (Array.isArray(parsed.items)) {
+            const validItems = parsed.items.filter((item) => {
+              const product = getProduct(item.productId);
+              return Boolean(
+                product
+                && product.weights.includes(item.weight)
+                && Number.isInteger(item.quantity)
+                && item.quantity > 0,
+              );
+            });
+            setItems(validItems);
+          }
           if (parsed.customer && typeof parsed.customer === "object") {
             setCustomer({
               ...emptyCustomer,
