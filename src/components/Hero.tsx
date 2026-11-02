@@ -12,7 +12,7 @@ export function Hero() {
           <a className="button button--primary" href="#pickles">Find your favourite <ArrowUpRight size={17} /></a>
           <a className="text-link" href="#about"><span className="play-icon"><ArrowDown size={14} /></span> Our story</a>
         </div>
-        <div className="hero-proof"><div className="proof-avatars"><span>అ</span><span>♡</span><span>ఇ</span></div><p><strong>Made the old-fashioned way</strong><small>Good ingredients. No shortcuts.</small></p></div>
+        <div className="hero-proof"><p><strong>Made the old-fashioned way</strong><small>Good ingredients. No shortcuts.</small></p></div>
       </div>
       <div className="hero-art-wrap">
         <div className="hero-stamp"><span>FROM OUR<br />VILLAGE KITCHEN</span><strong>100%</strong><small>made with care</small></div>
