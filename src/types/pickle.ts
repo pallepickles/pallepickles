@@ -1,7 +1,6 @@
 export type ProductCategory = "Veg" | "Non-Veg";
 export type WeightGrams = 250 | 500 | 1000;
-export type CourierService = "premium" | "normal";
-export type CourierTerritory = "within-ts" | "other-state" | "metro";
+export type CourierTerritory = "ts" | "ap" | "other-states";
 
 export interface Product {
   id: string;
@@ -30,7 +29,7 @@ export interface CustomerDetails {
   state: string;
   country: string;
   postalCode: string;
+  desiredDeliveryDate: string;
   instructions: string;
-  courierService: CourierService | "";
   courierTerritory: CourierTerritory | "";
 }

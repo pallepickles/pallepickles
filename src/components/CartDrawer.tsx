@@ -44,7 +44,7 @@ export function CartDrawer({ open, onClose, onCheckout }: { open: boolean; onClo
             );
           })}
         </div>
-        {items.length > 0 && <div className="drawer-footer"><div className="subtotal-row"><span>Subtotal</span><strong>₹{formatPrice(subtotal)}</strong></div><p>Shipping and delivery details are confirmed on WhatsApp.</p><button className="button button--primary checkout-button" onClick={onCheckout}>Continue to delivery <ArrowRight size={17} /></button><div className="secure-note">Hand-packed with care · Worldwide delivery</div></div>}
+        {items.length > 0 && <div className="drawer-footer"><div className="subtotal-row"><span>Subtotal</span><strong>₹{formatPrice(subtotal)}</strong></div><p>India DTDC rates are shown at checkout. International delivery is quoted separately.</p><button className="button button--primary checkout-button" onClick={onCheckout}>Continue to delivery <ArrowRight size={17} /></button><div className="secure-note">Hand-packed with care · Worldwide delivery</div></div>}
       </aside>
     </div>
   );

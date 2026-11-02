@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { getProduct } from "@/data/products";
-import type { CartItem, CustomerDetails, WeightGrams } from "@/types/pickle";
+import type { CartItem, CourierTerritory, CustomerDetails, WeightGrams } from "@/types/pickle";
 
 const STORAGE_KEY = "palle-pickles-store-v1";
 
@@ -22,10 +22,13 @@ const emptyCustomer: CustomerDetails = {
   state: "",
   country: "",
   postalCode: "",
+  desiredDeliveryDate: "",
   instructions: "",
-  courierService: "",
   courierTerritory: "",
 };
+
+const isCourierTerritory = (value: unknown): value is CourierTerritory =>
+  value === "ts" || value === "ap" || value === "other-states";
 
 interface PersistedState {
   items: CartItem[];
@@ -60,7 +63,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
           const parsed = JSON.parse(saved) as Partial<PersistedState>;
           if (Array.isArray(parsed.items)) setItems(parsed.items);
           if (parsed.customer && typeof parsed.customer === "object") {
-            setCustomer({ ...emptyCustomer, ...parsed.customer });
+            setCustomer({
+              ...emptyCustomer,
+              ...parsed.customer,
+              courierTerritory: isCourierTerritory(parsed.customer.courierTerritory)
+                ? parsed.customer.courierTerritory
+                : "",
+            });
           }
         }
       } catch {
