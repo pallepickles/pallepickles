@@ -7,7 +7,7 @@ interface PickleJarArtwork {
   softAccent: string;
 }
 
-function PickleJar({ id, label, accent, softAccent }: PickleJarArtwork) {
+function PickleJar({ id, label, accent, softAccent, entranceAnimation = false }: PickleJarArtwork & { entranceAnimation?: boolean }) {
   const rotationOffset = id.split("").reduce((total, letter) => total + letter.charCodeAt(0), 0) % 7;
   const style = {
     "--art-accent": accent,
@@ -16,7 +16,7 @@ function PickleJar({ id, label, accent, softAccent }: PickleJarArtwork) {
   } as CSSProperties;
 
   return (
-    <div className="pickle-jar-motion" style={style}>
+    <div className={`pickle-jar-motion${entranceAnimation ? " pickle-jar-motion--hero" : ""}`} style={style}>
       <div className={`pickle-jar${id ? ` pickle-jar--${id}` : ""}`}>
         <div className="pickle-jar__lid" />
         <div className="pickle-jar__glass">
@@ -65,7 +65,7 @@ export function PickleArt({
           {displayComboItems.map((item) => <PickleJar key={item.id} {...item} />)}
         </div>
       ) : (
-        <PickleJar id={variant ?? ""} label={label} accent={accent} softAccent={softAccent} />
+        <PickleJar id={variant ?? ""} label={label} accent={accent} softAccent={softAccent} entranceAnimation={large} />
       )}
       <span className="art-caption">Made with care, from our home to yours</span>
     </div>

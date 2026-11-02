@@ -48,7 +48,7 @@ export default function HomePage() {
           <div className="catalog-toolbar"><div className="catalog-count"><span>{String(filteredProducts.length).padStart(2, "0")}</span> pickles &amp; combos</div><div className="filter-tabs" role="group" aria-label="Filter by pickle type">
             {(["All pickles", "Veg", "Non-Veg", "Combo offers"] as const).map((option) => <button key={option} className={filter === option ? "filter-tab is-active" : "filter-tab"} onClick={() => setFilter(option)} aria-pressed={filter === option}>{option}{option === "Non-Veg" && <span className="nonveg-dot" />}</button>)}
           </div></div>
-          <div className="product-grid">{filteredProducts.map((product) => <ProductCard key={product.id} product={product} onAdded={notifyAdded} />)}</div>
+          <div className="product-grid">{filteredProducts.map((product, index) => <ProductCard key={product.id} product={product} onAdded={notifyAdded} attentionIndex={index} />)}</div>
           <p className="catalog-footnote"><BadgeCheck size={15} /> All prices in INR · Freshly made in small batches</p>
         </section>
 

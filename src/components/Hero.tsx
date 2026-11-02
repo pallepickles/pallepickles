@@ -17,9 +17,8 @@ export function Hero() {
       <div className="hero-art-wrap">
         <div className="hero-stamp"><span>FROM OUR<br />VILLAGE KITCHEN</span><strong>100%</strong><small>made with care</small></div>
         <PickleArt label="PACCHADI" accent="#a94221" softAccent="#f4d9c0" variant="mango-pacchadi" large />
-        <div className="hero-art-note"><span>01 / 07</span><span>Sunshine, spice &amp; everything nice</span></div>
+        <div className="hero-art-note"><span>Sunshine, spice &amp; everything nice</span></div>
       </div>
-      <a className="scroll-cue" href="#pickles"><span /> Scroll to savour</a>
     </section>
   );
 }
