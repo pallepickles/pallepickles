@@ -16,6 +16,7 @@ export interface Product {
   prices: Partial<Record<WeightGrams, number>>;
   variantLabels?: Partial<Record<WeightGrams, string>>;
   badge?: string;
+  comboProductIds?: string[];
 }
 
 export interface CartItem {

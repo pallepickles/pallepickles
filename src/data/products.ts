@@ -14,6 +14,7 @@ export const products: Product[] = [
     prices: { 1250: 999 },
     variantLabels: { 1250: "5 × 250 g jars" },
     badge: "Combo · ₹999",
+    comboProductIds: ["chicken", "tomato", "mango-pacchadi", "gongura", "lemon"],
   },
   {
     id: "three-nonveg-combo",
@@ -28,6 +29,7 @@ export const products: Product[] = [
     prices: { 750: 899 },
     variantLabels: { 750: "3 × 250 g jars" },
     badge: "Combo · ₹899",
+    comboProductIds: ["mutton", "fish", "chicken"],
   },
   {
     id: "mutton",
@@ -174,3 +176,8 @@ export const products: Product[] = [
 ];
 
 export const getProduct = (id: string) => products.find((product) => product.id === id);
+
+export const getComboProducts = (product: Product) =>
+  (product.comboProductIds ?? [])
+    .map((id) => getProduct(id))
+    .filter((item): item is Product => Boolean(item));

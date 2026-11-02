@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check, Plus } from "lucide-react";
 import { PickleArt } from "@/components/PickleArt";
 import { useCart } from "@/context/CartContext";
+import { getComboProducts } from "@/data/products";
 import type { Product, WeightGrams } from "@/types/pickle";
 
 const formatPrice = (value: number) => new Intl.NumberFormat("en-IN").format(value);
@@ -15,6 +16,12 @@ export function ProductCard({ product, onAdded }: { product: Product; onAdded: (
   const { addItem } = useCart();
   const price = product.prices[weight] ?? 0;
   const variantLabel = product.variantLabels?.[weight] ?? formatWeight(weight);
+  const comboItems = getComboProducts(product).map((item) => ({
+    id: item.id,
+    label: item.imageLabel.toUpperCase(),
+    accent: item.accent,
+    softAccent: item.softAccent,
+  }));
 
   const handleAdd = () => {
     addItem(product.id, weight);
@@ -24,10 +31,10 @@ export function ProductCard({ product, onAdded }: { product: Product; onAdded: (
   };
 
   return (
-    <article className="product-card">
+    <article className={`product-card${product.category === "Combo" ? " product-card--combo" : ""}`}>
       <div className="product-visual">
         {product.badge && <span className="product-badge">{product.badge}</span>}
-        <PickleArt label={product.imageLabel.toUpperCase()} accent={product.accent} softAccent={product.softAccent} variant={product.id} />
+        <PickleArt label={product.imageLabel.toUpperCase()} accent={product.accent} softAccent={product.softAccent} variant={product.id} comboItems={comboItems} />
         <span className={`category-tag${product.category === "Non-Veg" ? " category-tag--nonveg" : product.category === "Combo" ? " category-tag--combo" : ""}`}><i />{product.category}</span>
       </div>
       <div className="product-content">
