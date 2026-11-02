@@ -27,7 +27,7 @@ export function ProductCard({ product, onAdded }: { product: Product; onAdded: (
     <article className="product-card">
       <div className="product-visual">
         {product.badge && <span className="product-badge">{product.badge}</span>}
-        <PickleArt label={product.imageLabel.toUpperCase()} accent={product.accent} softAccent={product.softAccent} />
+        <PickleArt label={product.imageLabel.toUpperCase()} accent={product.accent} softAccent={product.softAccent} variant={product.id} />
         <span className={`category-tag${product.category === "Non-Veg" ? " category-tag--nonveg" : product.category === "Combo" ? " category-tag--combo" : ""}`}><i />{product.category}</span>
       </div>
       <div className="product-content">

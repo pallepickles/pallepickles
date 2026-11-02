@@ -37,7 +37,7 @@ export function CartDrawer({ open, onClose, onCheckout }: { open: boolean; onClo
             const variantLabel = product.variantLabels?.[item.weight] ?? formatWeight(item.weight);
             return (
               <div className="cart-line" key={`${item.productId}-${item.weight}`}>
-                <div className="cart-line__art"><PickleArt label={product.imageLabel.toUpperCase()} accent={product.accent} softAccent={product.softAccent} /></div>
+                <div className="cart-line__art"><PickleArt label={product.imageLabel.toUpperCase()} accent={product.accent} softAccent={product.softAccent} variant={product.id} /></div>
                 <div className="cart-line__main"><div className="cart-line__top"><div><h3>{product.name}</h3><span>{variantLabel} · {product.category}</span></div><strong>₹{formatPrice(lineTotal)}</strong></div>
                   <div className="cart-line__bottom"><div className="quantity-control"><button onClick={() => decrementItem(item.productId, item.weight)} aria-label={`Decrease ${product.name} quantity`}><Minus size={13} /></button><span>{item.quantity}</span><button onClick={() => incrementItem(item.productId, item.weight)} aria-label={`Increase ${product.name} quantity`}><Plus size={13} /></button></div><button className="remove-button" onClick={() => removeItem(item.productId, item.weight)}><Trash2 size={14} /> Remove</button></div>
                 </div>

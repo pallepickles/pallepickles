@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { ArrowRight, BadgeCheck, Globe2, HandHeart, Leaf, ShieldCheck } from "lucide-react";
 import { CartDrawer } from "@/components/CartDrawer";
 import { CheckoutModal } from "@/components/CheckoutModal";
@@ -55,7 +56,7 @@ export default function HomePage() {
           <div className="story-copy"><span className="eyebrow"><span className="eyebrow-line" /> A STORY IN EVERY JAR</span><h2>Some flavours<br />feel like <em>coming home.</em></h2><p>Our pickles begin in the heart of a village kitchen, where good food takes its time and every recipe has a story. We keep those traditions alive with carefully chosen ingredients and the same care we&rsquo;d give our own family.</p><p>From the first crackle of mustard seeds to the last spoonful of spice, every batch is made to bring people closer around the table.</p><a className="story-link" href="#pickles">Find your flavour <ArrowRight size={16} /></a></div>
         </section>
 
-        <section className="closing-banner"><div className="closing-pattern" /><div className="closing-copy"><span className="eyebrow eyebrow--light">A LITTLE VILLAGE MAGIC</span><h2>Bring home the<br /><em>palle flavour.</em></h2><p>Your next favourite jar is just a click away.</p><a className="button button--light" href="#pickles">Shop all pickles <ArrowRight size={16} /></a></div><div className="closing-seal"><span>MADE WITH<br />LOVE &amp; MASALA</span><strong>పల్లె</strong></div></section>
+        <section className="closing-banner"><div className="closing-pattern" /><div className="closing-copy"><span className="eyebrow eyebrow--light">A LITTLE VILLAGE MAGIC</span><h2>Bring home the<br /><em>palle flavour.</em></h2><p>Your next favourite jar is just a click away.</p><a className="button button--light" href="#pickles">Shop all pickles <ArrowRight size={16} /></a></div><div className="closing-seal"><Image className="closing-seal__logo" src="/palle-pickles-village-logo.png" alt="Palle Pickles village logo" width={1254} height={1254} sizes="(max-width: 360px) 78px, (max-width: 700px) 96px, 150px" /></div></section>
       </main>
       <Footer />
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} onCheckout={startCheckout} />
