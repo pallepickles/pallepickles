@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Leaf, Menu, ShoppingBag, X } from "lucide-react";
+import Image from "next/image";
+import { Menu, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 export function Header({ onCartClick }: { onCartClick: () => void }) {
@@ -19,7 +20,7 @@ export function Header({ onCartClick }: { onCartClick: () => void }) {
       <div className="top-ribbon">Small-batch Telugu pickles · Made with love in India · Shipping worldwide</div>
       <div className="nav-shell">
         <a className="brand-lockup" href="#home" aria-label="Palle Pickles home">
-          <span className="brand-mark"><Leaf size={21} strokeWidth={1.8} /></span>
+          <Image className="brand-logo" src="/palle-pickles-village-logo.png" alt="" width={1254} height={1254} sizes="58px" />
           <span><strong>Palle Pickles</strong><small>Powered by SS Entreprises</small></span>
         </a>
         <nav className={`desktop-nav${menuOpen ? " desktop-nav--open" : ""}`} aria-label="Main navigation">
