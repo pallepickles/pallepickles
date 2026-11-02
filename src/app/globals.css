@@ -12,8 +12,8 @@
   --green: #294c39;
   --mustard: #e5ad3d;
   --line: #e8e0d3;
-  --font-body: "DM Sans", sans-serif;
-  --font-display: "Playfair Display", serif;
+  --font-body: sans-serif;
+  --font-display: serif;
 }
 
 * { box-sizing: border-box; }
@@ -220,4 +220,36 @@ a { color: inherit; text-decoration: none; }
   .courier-fields { gap: 7px; }
   .courier-estimate > span { font-size: 7px; }
   .courier-disclaimer { font-size: 6px; }
+}
+
+/* Revised typography: a crisp, sturdy sans for the shop and an editorial serif for stories. */
+body { --font-product: var(--font-body); font-family: var(--font-body); font-optical-sizing: auto; letter-spacing: -.008em; }
+button, input, textarea, select { font-family: var(--font-body); }
+.brand-lockup strong { font-family: var(--font-product); font-size: 19px; font-weight: 800; letter-spacing: -.045em; }
+.brand-lockup small { font-weight: 600; letter-spacing: .09em; }
+.desktop-nav a, .mobile-menu-button { font-family: var(--font-body); font-weight: 600; }
+.hero-copy h1 { font-family: var(--font-display); font-weight: 500; letter-spacing: -.04em; }
+.hero-stamp strong, .catalog-count span { font-family: var(--font-product); font-weight: 800; font-variant-numeric: tabular-nums; }
+.pickle-jar__label span, .pickle-jar__label strong, .pickle-jar__label i { font-family: var(--font-product); }
+.section-intro h2, .story-copy h2, .closing-copy h2, .story-art__copy strong { font-family: var(--font-display); letter-spacing: -.035em; }
+.product-heading h3 { font-family: var(--font-product); font-size: 17px; font-weight: 750; letter-spacing: -.035em; line-height: 1.24; }
+.product-heading h3 small { font-family: var(--font-product); font-size: 10px; font-weight: 600; letter-spacing: 0; }
+.product-price { color: var(--red); font-family: var(--font-product); font-size: 17px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.04em; white-space: nowrap; }
+.weight-option, .add-button, .variant-fixed { font-family: var(--font-product); font-weight: 650; }
+.drawer-header h2, .cart-line__top h3, .empty-cart h3, .checkout-form-header h2 { font-family: var(--font-product); font-weight: 750; letter-spacing: -.035em; }
+.cart-line__top > strong, .subtotal-row strong, .checkout-summary strong, .checkout-cost-lines strong, .courier-estimate > strong { font-family: var(--font-product); font-variant-numeric: tabular-nums; font-weight: 800; letter-spacing: -.035em; }
+.checkout-side__content h2 { font-family: var(--font-display); font-weight: 500; letter-spacing: -.035em; }
+.button, .filter-tab, .form-field, .form-field input, .form-field textarea, .form-field select { font-family: var(--font-product); }
+
+@media (max-width: 700px) {
+  .product-heading h3 { font-size: clamp(15px, 4vw, 17px); }
+  .product-price { font-size: 15px; }
+  .product-description { font-size: 10px; }
+  .product-ingredients { font-size: 8px; }
+  .weight-option, .add-button, .variant-fixed { font-size: 9px; }
+}
+
+@media (max-width: 360px) {
+  .product-heading h3 { font-size: 14px; }
+  .product-price { font-size: 14px; }
 }

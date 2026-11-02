@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { Lora, Manrope } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/app/providers";
 
-const bodyFont = DM_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
-const displayFont = Playfair_Display({ subsets: ["latin"], variable: "--font-display", display: "swap" });
+const bodyFont = Manrope({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const displayFont = Lora({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Palle Pickles | Prathi muddhalo palle flavour",
