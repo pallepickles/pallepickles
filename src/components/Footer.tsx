@@ -31,7 +31,9 @@ export function Footer() {
       <div className="footer-bottom"><span>© {new Date().getFullYear()} Palle Pickles</span><span>Made with care in India <i>✳</i> Powered by SS Entreprises</span></div>
       <div className="footer-credit" aria-label="Built by AI Developer India">
         <span>Built by</span>
-        <Image className="footer-credit__logo" src="/A-logo.png" alt="AI Developer India logo" width={1024} height={1024} sizes="30px" />
+        <a className="footer-credit__link" href="https://www.aideveloperindia.xyz/" target="_blank" rel="noreferrer" aria-label="Visit AI Developer India">
+          <Image className="footer-credit__logo" src="/A-logo.png" alt="" width={1024} height={1024} sizes="30px" />
+        </a>
         <span>AI Developer India</span>
       </div>
     </footer>
