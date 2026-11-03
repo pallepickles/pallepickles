@@ -24,12 +24,16 @@ export function CheckoutModal({ open, onClose, onBack }: { open: boolean; onClos
   const pickleWeightKg = pickleWeightGrams / 1000;
   const courierQuote = isIndia ? getCourierQuote(customer.courierTerritory, pickleWeightGrams) : null;
   const domesticGrandTotal = courierQuote ? subtotal + courierQuote.amount : null;
+  const missingCourierQuoteLabel = pickleWeightGrams > 10000
+    ? "DTDC quote required above 10 kg"
+    : "Select delivery area";
   const dtdcDestination = [customer.city, customer.state, customer.country].filter(Boolean).join(", ");
   const dtdcMessage = [
     "Hello DTDC, please share the international courier and delivery charge for this parcel.",
     `Destination: ${dtdcDestination}${customer.postalCode ? ` - ${customer.postalCode}` : ""}`,
     `Parcel pickle weight before packing: ${pickleWeightKg.toLocaleString("en-IN", { maximumFractionDigits: 2 })} kg`,
-    "Please let me know the international courier charge and any applicable packing requirements.",
+    "Packaging charge from Palle Pickles: FREE.",
+    "Please let me know the international courier charge.",
   ].join("\n");
   const canContactDtdc = Boolean(customer.city.trim() && customer.state.trim() && customer.country.trim());
   const dtdcWhatsAppUrl = `https://wa.me/${DTDC_WHATSAPP}?text=${encodeURIComponent(dtdcMessage)}`;
@@ -63,14 +67,14 @@ export function CheckoutModal({ open, onClose, onBack }: { open: boolean; onClos
     const dateLine = `${formatRequestedDate(customer.desiredDeliveryDate)} (requested date only; DTDC delivery schedules and rules apply, so it is not guaranteed)`;
     const courierLine = isIndia
       ? courierQuote
-        ? `₹${formatPrice(courierQuote.amount)} (${getTerritoryName(customer.courierTerritory)} · ₹${courierQuote.ratePerKg}/kg × ${pickleWeightKg.toLocaleString("en-IN", { maximumFractionDigits: 2 })} kg)`
-        : "Select an Indian delivery area to calculate"
-      : "International charge pending DTDC quote; not included yet";
+        ? `₹${formatPrice(courierQuote.amount)} (${getTerritoryName(customer.courierTerritory)} · ${courierQuote.band})`
+        : missingCourierQuoteLabel
+      : "International charge pending DTDC quote";
     const grandTotalLine = isIndia
       ? domesticGrandTotal == null
-        ? "Select an Indian delivery area to calculate"
-        : `₹${formatPrice(domesticGrandTotal)} (before packing charge)`
-      : `₹${formatPrice(subtotal)} + international courier and packing charges (pending)`;
+        ? missingCourierQuoteLabel
+        : `₹${formatPrice(domesticGrandTotal)}`
+      : `₹${formatPrice(subtotal)} + international courier charge (pending DTDC quote)`;
 
     const message = [
       "*NEW ORDER - PALLE PICKLES* 🌾",
@@ -91,7 +95,7 @@ export function CheckoutModal({ open, onClose, onBack }: { open: boolean; onClos
       "",
       `• *Items subtotal:* ₹${formatPrice(subtotal)}`,
       `• *DTDC delivery charge:* ${courierLine}`,
-      "• *Packing charge:* To be confirmed separately",
+      "• *Packaging charge:* FREE",
       `💰 *Grand total:* ${grandTotalLine}`,
       "",
       `📝 *Special instructions:* ${customer.instructions.trim() || "None"}`,
@@ -131,18 +135,18 @@ export function CheckoutModal({ open, onClose, onBack }: { open: boolean; onClos
 
             {isIndia ? (
               <section className="courier-panel" aria-labelledby="courier-title">
-                <div className="courier-panel__heading"><strong id="courier-title">DTDC India-wide delivery rates</strong><span>Calculated per kg</span></div>
+                <div className="courier-panel__heading"><strong id="courier-title">DTDC India-wide delivery rates</strong><span>Flat slabs · packing free</span></div>
                 <label className="form-field"><span>Delivery area <i>*</i></span><select required value={customer.courierTerritory} onChange={(e) => updateCustomer("courierTerritory", e.target.value)}>
                   <option value="">Choose delivery area</option>
-                  <option value="ts">Telangana (TS) · ₹50/kg</option>
-                  <option value="ap">AP · ₹80/kg</option>
-                  <option value="other-states">Other states · ₹120/kg</option>
+                  <option value="ts">Telangana (TS) · ₹50 up to 5 kg, ₹40 above 5–10 kg</option>
+                  <option value="ap">AP · ₹80 up to 5 kg, ₹60 above 5–10 kg</option>
+                  <option value="other-states">Other states · ₹120 up to 10 kg</option>
                 </select></label>
                 <div className="courier-estimate" aria-live="polite">
-                  <span>{pickleWeightGrams.toLocaleString("en-IN")} g pickle weight · {courierQuote?.band ?? "Select delivery area"}</span>
-                  <strong>{courierQuote ? `₹${formatPrice(courierQuote.amount)}` : "—"}</strong>
+                  <span>{pickleWeightGrams.toLocaleString("en-IN")} g pickle weight · {courierQuote?.band ?? missingCourierQuoteLabel}</span>
+                  <strong>{courierQuote ? `₹${formatPrice(courierQuote.amount)}` : pickleWeightGrams > 10000 ? "Quote needed" : "—"}</strong>
                 </div>
-                <p className="courier-disclaimer">Calculated using the selected rate per kg and pickle weight before packing. DTDC may determine a different final billable weight after packing. Packing charge is confirmed separately.</p>
+                <p className="courier-disclaimer">The flat slab applies for any weight within its limit, including 0.5 kg orders; there is no per-kg or half-kg deduction. Packaging is free. DTDC may determine a different final billable weight after packing. Parcels above 10 kg need a DTDC quote.</p>
               </section>
             ) : (
               <section className="courier-panel courier-panel--international" aria-labelledby="international-courier-title">
@@ -157,9 +161,9 @@ export function CheckoutModal({ open, onClose, onBack }: { open: boolean; onClos
 
             <div className="checkout-summary"><span>Items subtotal · {items.reduce((sum, item) => sum + item.quantity, 0)} jars</span><strong>₹{formatPrice(subtotal)}</strong></div>
             <div className="checkout-cost-lines">
-              <div><span>DTDC delivery</span><strong>{isIndia ? courierQuote ? `₹${formatPrice(courierQuote.amount)}` : "Choose delivery area" : "International quote pending"}</strong></div>
-              <div><span>Packing</span><strong>To be confirmed</strong></div>
-              <div className="checkout-cost-lines__total"><span>Grand total</span><strong>{isIndia ? domesticGrandTotal === null ? "Choose delivery area" : `₹${formatPrice(domesticGrandTotal)} + packing` : `₹${formatPrice(subtotal)} + courier & packing`}</strong></div>
+              <div><span>DTDC delivery</span><strong>{isIndia ? courierQuote ? `₹${formatPrice(courierQuote.amount)}` : missingCourierQuoteLabel : "International quote pending"}</strong></div>
+              <div><span>Packaging</span><strong>FREE</strong></div>
+              <div className="checkout-cost-lines__total"><span>Grand total</span><strong>{isIndia ? domesticGrandTotal === null ? missingCourierQuoteLabel : `₹${formatPrice(domesticGrandTotal)}` : `₹${formatPrice(subtotal)} + international courier pending`}</strong></div>
             </div>
             <button className="button button--primary checkout-submit" type="submit">Place order on WhatsApp <ArrowUpRight size={17} /></button>
             <p className="form-footnote">Palle Pickles receives your order. International courier quotes are handled separately with DTDC.</p>
