@@ -11,9 +11,9 @@ export const products: Product[] = [
     accent: "#a9412c",
     softAccent: "#f3dfc9",
     weights: [1250],
-    prices: { 1250: 999 },
+    prices: { 1250: 1199 },
     variantLabels: { 1250: "5 × 250 g jars" },
-    badge: "Combo · ₹999",
+    badge: "Combo · ₹1,199",
     comboProductIds: ["chicken", "tomato", "mango-pacchadi", "gongura", "lemon"],
   },
   {
@@ -26,9 +26,9 @@ export const products: Product[] = [
     accent: "#71342d",
     softAccent: "#ead8d1",
     weights: [750],
-    prices: { 750: 899 },
+    prices: { 750: 1049 },
     variantLabels: { 750: "3 × 250 g jars" },
-    badge: "Combo · ₹899",
+    badge: "Combo · ₹1,049",
     comboProductIds: ["mutton", "fish", "chicken"],
   },
   {
