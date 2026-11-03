@@ -100,8 +100,8 @@ export function CheckoutModal({ open, onClose, onBack }: { open: boolean; onClos
       "",
       `📝 *Special instructions:* ${customer.instructions.trim() || "None"}`,
       "",
-      "Please confirm my order and share payment details. Thank you!",
-      "I will pay and send you a screenshot once you tell me the packing and courier charges.",
+      "Please confirm my order and share UPI ID or QR Code or GPay, Phonepe Number for payment. Thank you!",
+      "I will pay and send you a screenshot.",
     ].join("\n");
 
     // Keep the basket and customer details available if the customer returns from WhatsApp.
